@@ -3,4 +3,5 @@
     <string name="http">http://</string>
     <string name="btn_search">buscar</string>
     <string name="btn_history">historial</string>
+    <string name="historial">Historial</string>
 </resources>

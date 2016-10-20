@@ -54,8 +54,6 @@
             style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_x="38dp"
-            android:layout_y="130dp"
             android:id="@+id/progressBar"
             android:visibility="visible"
             tools:visibility="visible" />
