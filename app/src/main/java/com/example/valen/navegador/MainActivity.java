@@ -40,16 +40,15 @@ public class MainActivity extends AppCompatActivity {
             Bundle bundle = getIntent().getExtras();
             if (!bundle.isEmpty()) {
                 String pag = bundle.getString("dir");
-                wv.loadUrl("http://" + pag);
+                if(pag!=null)
+                    wv.loadUrl("http://" + pag);
             }
         }catch(Exception e){}
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         wv.setWebChromeClient(new WebChromeClient() {
             private int progress;
-
             public void setProgress(int progress) {
-
                 this.progress = progress;
             }
 
@@ -58,11 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 progressBar.setProgress(0);
                 progressBar.setVisibility(View.VISIBLE);
                 this.setProgress(progress * 1000);
-
                 progressBar.incrementProgressBy(progress);
-
                 if (progress == 100) {
-                    progressBar.setVisibility(View.GONE);
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -109,4 +106,5 @@ public class MainActivity extends AppCompatActivity {
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(tv.getWindowToken(), 0);
     }
+
 }

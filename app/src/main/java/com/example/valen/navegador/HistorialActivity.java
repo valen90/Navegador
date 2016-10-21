@@ -48,6 +48,18 @@ public class HistorialActivity extends AppCompatActivity {
         intent.putExtra("dir",s);
         startActivity(intent);
         finish();
+    }
 
+    public void borrarHistorial(View v){
+        AdminSQLite admin = new AdminSQLite(this,"administracion",null,1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+        bd.delete("paginas",null,null);
+        bd.close();
+        layout = (LinearLayout) findViewById(R.id.linScroLay);
+        layout.removeAllViews();
+    }
+    @Override
+    public void onBackPressed(){
+        met("www.google.es");
     }
 }

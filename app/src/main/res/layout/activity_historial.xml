@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_historial"
     android:layout_width="match_parent"
@@ -18,6 +19,14 @@
         android:id="@+id/textView"
         android:textSize="24sp"
         android:textAlignment="center" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_delete"
+        android:id="@+id/imageButton"
+        android:contentDescription="@string/btn_borrar"
+        android:onClick="borrarHistorial"/>
 
     <ScrollView
         android:layout_width="match_parent"

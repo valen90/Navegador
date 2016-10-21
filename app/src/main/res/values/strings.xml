@@ -4,4 +4,5 @@
     <string name="btn_search">buscar</string>
     <string name="btn_history">historial</string>
     <string name="historial">Historial</string>
+    <string name="btn_borrar">Borrar</string>
 </resources>
