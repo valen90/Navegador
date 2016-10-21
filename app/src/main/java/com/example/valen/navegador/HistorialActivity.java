@@ -41,6 +41,7 @@ public class HistorialActivity extends AppCompatActivity {
             }
         }
         bd.close();
+
     }
 
     private void met(String s){

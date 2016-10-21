@@ -17,13 +17,18 @@ import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     WebView wv;
-    TextView tv;
+    AutoCompleteTextView tv;
     ProgressBar progressBar;
     int nRegistro;
     @Override
@@ -32,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         wv = (WebView) findViewById(R.id.webView);
-        tv = (TextView) findViewById(R.id.tfDireccion);
+        tv = (AutoCompleteTextView) findViewById(R.id.tfDireccion);
 
         wv.loadUrl("http://www.google.es");
         wv.setWebViewClient(new WebViewClient());
@@ -73,6 +78,21 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+        AdminSQLite admin = new AdminSQLite(this,"administracion",null,1);
+        SQLiteDatabase bd = admin.getWritableDatabase();
+        Cursor c = bd.query("paginas", new String[]{"direccion"},null,null,null,null,null);
+        ArrayList<String> lista = new ArrayList<String>();
+        if(c.moveToFirst()) {
+            while (c.moveToNext()) {
+                lista.add(c.getString(0)+"");
+            }
+        }
+        bd.close();
+        if(lista.size()>0) {
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, lista);
+            tv.setThreshold(5);
+            tv.setAdapter(adapter);
+        }
     }
 
     public void pulsarBuscar(View view){
